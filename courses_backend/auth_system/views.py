@@ -4,7 +4,17 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.middleware.csrf import  get_token
 
+
+def get_token_csrf(request):
+    token = get_token(request)
+    json_response = {
+        "status": "succesfully",
+        "errors": "no_errors",
+        "token": token,
+    }
+    return JsonResponse(json_response)
 
 @csrf_exempt
 def user_registration(request):
@@ -132,3 +142,18 @@ def user_logout(request):
         json_response["errors"] = "user is not autentificated or user not found"
 
     return JsonResponse(json_response)
+
+# использование токена на фронте
+# var
+# token = '{{csrf_token}}';  # передаем токен из вью
+#
+# $.ajax({
+#     headers: {"X-CSRFToken": token},  # добавляем его в наш запрос
+#
+#     type: "POST",
+#     url: "/some_view/",
+#     data: {
+#         data
+#     },
+#     success: function() {
+#         ...
