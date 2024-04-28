@@ -1,6 +1,6 @@
 import json
 
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -98,5 +98,37 @@ def check_user_authentification(request):
         # No backend authenticated the credentials
         json_response["status"] = "failed"
         json_response["errors"] = "user is not autentificated"
+
+    return JsonResponse(json_response)
+
+@csrf_exempt
+def user_logout(request):
+
+    json_response = {
+        "status":"no_status",
+        "errors":"no_errors",
+    }
+
+    json_data = request.body
+    # Проверка сушествования json_data
+    if json_data is None:
+        json_response["status"] = "failed"
+        json_response["errors"] = "Not found data"
+        return JsonResponse(json_response)
+
+
+    data = json.loads(json_data.decode('utf-8'))
+
+    #Проверка сушествования пользователя
+    user = User.objects.get(username=data["email"])
+
+    if user is not None and  user.is_authenticated:
+        # A backend authenticated the credentials
+        logout(user)
+        json_response["status"] = "succesfully"
+    else:
+        # No backend authenticated the credentials
+        json_response["status"] = "failed"
+        json_response["errors"] = "user is not autentificated or user not found"
 
     return JsonResponse(json_response)
