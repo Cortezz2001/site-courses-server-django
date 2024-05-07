@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'courses.apps.CoursesConfig',
+    'mentors.apps.MentorsConfig',
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
