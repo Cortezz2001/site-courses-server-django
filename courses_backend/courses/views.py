@@ -1,10 +1,9 @@
-from rest_framework import generics, status
-from rest_framework.response import Response
-from .models import Course, Features
+from rest_framework import generics
+from .models import Course
 from .serializers import CourseSerializer, NestedCourseSerializer
 
 
-class CourseListView(generics.ListAPIView):
+class CourseListView(generics.RetrieveAPIView):
   """
   API endpoint for retrieving a list of all courses.
   """
@@ -20,7 +19,7 @@ class CourseDetailView(generics.RetrieveAPIView):
   serializer_class = NestedCourseSerializer
 
 
-class BriefCourseListView(generics.ListAPIView):
+class BriefCourseListView(generics.RetrieveAPIView):
   """
   API endpoint for retrieving a list of courses with brief information (excluding nested data).
   """
