@@ -1,11 +1,13 @@
 
-from django.urls import path
-from .views import user_registration, check_user_authentification, user_authentification, user_logout, get_token_csrf
+from django.contrib import admin
+from django.urls import path, include
+from rest_framework.authtoken.views import obtain_auth_token
+
+from .views import CheckAuth, Logout
 
 urlpatterns = [
-    path('user_registration', user_registration),
-    path('check_user_authentification', check_user_authentification),
-    path('user_authentification', user_authentification),
-    path('user_logout', user_logout),
-    path('get_csrf_token', get_token_csrf),
+    path('', include("djoser.urls")),
+    path('checkAuth', CheckAuth.as_view()),
+    path('logout', Logout.as_view()),
+    path('token', obtain_auth_token, name="token"),
 ]
