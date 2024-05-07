@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'courses.apps.CoursesConfig',
     'mentors.apps.MentorsConfig',
+    'events.apps.EventsConfig',
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
