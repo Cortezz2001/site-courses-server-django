@@ -3,7 +3,6 @@ from .models import (
     Course,
     Skill,
     Control,
-    Mentor,
     Theme,
     Features,
     Knowhow,
@@ -17,11 +16,6 @@ class SkillInline(admin.TabularInline):
 
 class ControlInline(admin.TabularInline):
     model = Control
-    extra = 1
-
-
-class MentorInline(admin.TabularInline):
-    model = Mentor
     extra = 1
 
 
@@ -49,7 +43,6 @@ class CourseAdmin(admin.ModelAdmin):
     inlines = [
         SkillInline,
         ControlInline,
-        MentorInline,
         ThemeInline,
         FeaturesInline,
         KnowhowInline,
@@ -58,6 +51,8 @@ class CourseAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'price', 'img', 'format', 'created_at')
     search_fields = ('title', 'desc')
     prepopulated_fields = {'slug': ('title',)}
+    filter_horizontal = ('active_mentors',)
+
 
     def created_at(self, obj):
         return obj.created_at.strftime('%Y-%m-%d')

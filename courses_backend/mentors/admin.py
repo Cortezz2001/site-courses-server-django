@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import (
-    Course,
+    LearnedCourse,
     Mentor,
 )
 
@@ -10,7 +10,7 @@ class MentorInline(admin.TabularInline):
 
 
 class CourseInline(admin.TabularInline):
-    model = Course
+    model = LearnedCourse
     extra = 1
 
 class MentorAdmin(admin.ModelAdmin):

@@ -1,5 +1,7 @@
 from rest_framework import serializers
-from .models import Course, Skill, Control, Mentor, Theme, Features, Knowhow, Challenge
+from .models import Course, Skill, Control, Theme, Features, Knowhow, Challenge
+
+from mentors.serializers import MentorSerializer
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -17,12 +19,6 @@ class SkillSerializer(serializers.ModelSerializer):
 class ControlSerializer(serializers.ModelSerializer):
   class Meta:
     model = Control
-    fields = '__all__'
-
-
-class MentorSerializer(serializers.ModelSerializer):
-  class Meta:
-    model = Mentor
     fields = '__all__'
 
 
@@ -54,7 +50,7 @@ class ChallengeSerializer(serializers.ModelSerializer):
 class NestedCourseSerializer(serializers.ModelSerializer):
   skills = SkillSerializer(source='skill_set', many=True)  # Using 'source' for clarity
   controls = ControlSerializer(source='control_set',many=True)
-  mentors = MentorSerializer(source='mentor_set',many=True)
+  active_mentors = MentorSerializer(many=True)
   themes = ThemeSerializer(source='theme_set',many=True)
   features = FeaturesSerializer(source='features_set',many=True)
   knowhows = KnowhowSerializer(source='knowhow_set', many=True)

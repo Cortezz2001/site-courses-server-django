@@ -1,9 +1,9 @@
-from datetime import datetime
-
 from django.db import models
+from mentors.models import Mentor
 
 
 class Course(models.Model):
+    active_mentors = models.ManyToManyField(Mentor, blank=True)
     id = models.AutoField(primary_key=True)
     bid = models.CharField(max_length=255, unique=True, verbose_name="Программа")
     img = models.URLField(verbose_name="Изображение")
@@ -37,15 +37,6 @@ class Control(models.Model):
         verbose_name = "Форма контроля"  
         verbose_name_plural = "Формы контроля"
 
-class Mentor(models.Model):
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=255, verbose_name="ФИО")
-    exp = models.CharField(max_length=255, verbose_name="Опыт")
-    img = models.URLField(verbose_name="Фото")
-    class Meta:
-        verbose_name = "Тренер"  
-        verbose_name_plural = "Тренеры"
 
 class Theme(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
@@ -71,6 +62,7 @@ class Knowhow(models.Model):
     class Meta:
         verbose_name = "Необходимый навык"  
         verbose_name_plural = "Необходимые навыки"
+
 
 class Challenge(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
