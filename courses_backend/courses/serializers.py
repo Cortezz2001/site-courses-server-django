@@ -32,7 +32,7 @@ class ThemeSerializer(serializers.ModelSerializer):
     fields = '__all__'
 
 
-class FeatureSerializer(serializers.ModelSerializer):
+class FeaturesSerializer(serializers.ModelSerializer):
   class Meta:
     model = Features
     fields = '__all__'
@@ -52,14 +52,13 @@ class ChallengeSerializer(serializers.ModelSerializer):
 
 # Nested serializer for including related models within a CourseSerializer
 class NestedCourseSerializer(serializers.ModelSerializer):
-  skills = SkillSerializer(many=True)
-  controls = ControlSerializer(many=True)
-  mentors = MentorSerializer(many=True)
-  themes = ThemeSerializer(many=True)
-  features = FeatureSerializer(many=True)
-  knowhows = KnowhowSerializer(many=True)
-  challenges = ChallengeSerializer(many=True)
-
+  skills = SkillSerializer(source='skill_set', many=True)  # Using 'source' for clarity
+  controls = ControlSerializer(source='control_set',many=True)
+  mentors = MentorSerializer(source='mentor_set',many=True)
+  themes = ThemeSerializer(source='theme_set',many=True)
+  features = FeaturesSerializer(source='features_set',many=True)
+  knowhows = KnowhowSerializer(source='knowhow_set', many=True)
+  challenges = ChallengeSerializer(source='challenge_set', many=True)
 
   class Meta:
     model = Course

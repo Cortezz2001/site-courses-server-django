@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 
 
@@ -12,6 +14,7 @@ class Course(models.Model):
     format = models.CharField(max_length=255, verbose_name="Формат")
     result = models.TextField(verbose_name="Результаты курса")
     slug = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания курса')
     class Meta:
         verbose_name = "Курс"  
         verbose_name_plural = "Курсы"    

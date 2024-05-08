@@ -3,7 +3,7 @@ from .models import Course
 from .serializers import CourseSerializer, NestedCourseSerializer
 
 
-class CourseListView(generics.RetrieveAPIView):
+class CourseListView(generics.ListAPIView):
   """
   API endpoint for retrieving a list of all courses.
   """
@@ -13,24 +13,15 @@ class CourseListView(generics.RetrieveAPIView):
 
 class CourseDetailView(generics.RetrieveAPIView):
   """
-  API endpoint for retrieving a single course by ID.
+  API endpoint for retrieving a single course by ID with all related data.
   """
   queryset = Course.objects.all()
   serializer_class = NestedCourseSerializer
-
-
-class BriefCourseListView(generics.RetrieveAPIView):
-  """
-  API endpoint for retrieving a list of courses with brief information (excluding nested data).
-  """
-  queryset = Course.objects.all()
-  serializer_class = CourseSerializer
-
+  lookup_field = 'pk'  # Use primary key for lookup
 
   def get_queryset(self):
-    queryset = super().get_queryset()
-    # Filter courses to only include specific fields for brief information
-    return queryset.values('id', 'bid', 'title', 'img', 'format', 'price')
+    # Optional filtering based on URL parameters or other criteria
+    return super().get_queryset()
 
 
 # GET /api/courses: Retrieves a list of all courses with full details.
