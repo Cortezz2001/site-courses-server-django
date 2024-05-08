@@ -1,6 +1,10 @@
 from django.db import models
 
+from mentors.models import Mentor
+
+
 class Event(models.Model):
+    active_mentors = models.ManyToManyField(Mentor, blank=True)
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255, verbose_name="Название", default='Название')
     desc = models.TextField(verbose_name="Описание", default='Описание')
@@ -15,11 +19,4 @@ class Event(models.Model):
         verbose_name_plural = "Анонсы"
 
 
-class Mentor(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=255, verbose_name="ФИО", default='ФИО')
-    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='mentors')
-    class Meta:
-        verbose_name = "Тренер"  
-        verbose_name_plural = "Тренеры"
     

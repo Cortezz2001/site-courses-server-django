@@ -1,18 +1,16 @@
 from rest_framework import serializers
-from .models import Event, Mentor
+from .models import Event
+from mentors.serializers import MentorSerializer
+
 
 class EventSerializer(serializers.ModelSerializer):
   class Meta:
     model = Event
-    fields = '__all__'  
+    fields = '__all__'
 
-class MentorSerializer(serializers.ModelSerializer):
-  class Meta:
-    model = Mentor
-    fields = '__all__'  
 
 class NestedEventSerializer(serializers.ModelSerializer):
-  mentors = MentorSerializer(many=True)  
+  active_mentors = MentorSerializer(many=True)
 
   class Meta:
     model = Event
