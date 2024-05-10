@@ -2,8 +2,7 @@ from django.contrib import admin
 from .models import (
     Course,
     Skill,
-    Control,
-    Theme,
+    Program,
     Features,
     Knowhow,
     Challenge,
@@ -14,13 +13,8 @@ class SkillInline(admin.TabularInline):
     extra = 1
 
 
-class ControlInline(admin.TabularInline):
-    model = Control
-    extra = 1
-
-
-class ThemeInline(admin.TabularInline):
-    model = Theme
+class ProgramInline(admin.TabularInline):
+    model = Program
     extra = 1
 
 
@@ -42,13 +36,12 @@ class ChallengeInline(admin.TabularInline):
 class CourseAdmin(admin.ModelAdmin):
     inlines = [
         SkillInline,
-        ControlInline,
-        ThemeInline,
+        ProgramInline,
         FeaturesInline,
         KnowhowInline,
         ChallengeInline,
     ]
-    list_display = ('id', 'title', 'price', 'img', 'format', 'created_at')
+    list_display = ('id', 'title', 'price', 'format', 'created_at')
     search_fields = ('title', 'desc')
     prepopulated_fields = {'slug': ('title',)}
     filter_horizontal = ('active_mentors',)

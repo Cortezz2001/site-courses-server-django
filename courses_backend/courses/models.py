@@ -3,16 +3,17 @@ from mentors.models import Mentor
 
 
 class Course(models.Model):
-    active_mentors = models.ManyToManyField(Mentor, blank=True)
     id = models.AutoField(primary_key=True)
-    bid = models.CharField(max_length=255, unique=True, verbose_name="Программа")
+    title = models.CharField(max_length=255, verbose_name="Название курса")
+    bid = models.CharField(max_length=255, unique=True, verbose_name="Наименование программы, куда входит курс")
     img = models.URLField(verbose_name="Изображение")
-    desc = models.TextField(verbose_name="Описание")
+    desc = models.TextField(verbose_name="Описание курса")
     goal = models.TextField(verbose_name="Цель курса")
-    price = models.CharField(max_length=255, verbose_name="Цена")
-    title = models.CharField(max_length=255, verbose_name="Название")
+    active_mentors = models.ManyToManyField(Mentor, blank=True, verbose_name="Тренеры курса")
+    price = models.CharField(max_length=255, verbose_name="Цена курса")
     format = models.CharField(max_length=255, verbose_name="Формат")
     result = models.TextField(verbose_name="Результаты курса")
+    control = models.CharField(max_length=255, verbose_name="Форма контроля")
     slug = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания курса')
     class Meta:
@@ -28,33 +29,6 @@ class Skill(models.Model):
         verbose_name = "Навык"  
         verbose_name_plural = "Навыки"    
 
-
-class Control(models.Model):
-    id = models.AutoField(primary_key=True)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    item = models.CharField(max_length=255, verbose_name="Форма контроля")
-    class Meta:
-        verbose_name = "Форма контроля"  
-        verbose_name_plural = "Формы контроля"
-
-
-class Theme(models.Model):
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    id = models.AutoField(primary_key=True)
-    theme = models.CharField(max_length=255, verbose_name="Название")
-    marker = models.CharField(max_length=255, verbose_name="Маркер")
-
-
-class Features(models.Model):
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    id = models.AutoField(primary_key=True)
-    item = models.CharField(max_length=255, verbose_name="Название")
-    title = models.CharField(max_length=255, verbose_name="Описание")
-    class Meta:
-        verbose_name = "Особенность"  
-        verbose_name_plural = "Особенности"
-
-
 class Knowhow(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     id = models.AutoField(primary_key=True)
@@ -62,6 +36,27 @@ class Knowhow(models.Model):
     class Meta:
         verbose_name = "Необходимый навык"  
         verbose_name_plural = "Необходимые навыки"
+
+class Program(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    id = models.AutoField(primary_key=True)
+    theme = models.CharField(max_length=255, verbose_name="Название")
+    marker = models.CharField(max_length=255, verbose_name="Маркер")
+    class Meta:
+        verbose_name = "Программа курса"  
+        verbose_name_plural = "Программа курса"
+
+class Features(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    id = models.AutoField(primary_key=True)
+    item = models.CharField(max_length=255, verbose_name="Название")
+    title = models.CharField(max_length=255, verbose_name="Описание")
+    class Meta:
+        verbose_name = "Дополнительная информация (Пример: Форма обучения - Оффлайн)"  
+        verbose_name_plural = "Дополнительная информация (Пример: Форма обучения - Оффлайн)"
+
+
+
 
 
 class Challenge(models.Model):

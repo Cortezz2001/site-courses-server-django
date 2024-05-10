@@ -4,7 +4,7 @@ from .models import (
 )
 
 class EventAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'format', 'img', 'created_at')
+    list_display = ('id', 'title', 'format', 'created_at')
     search_fields = ('title', 'format')
     filter_horizontal = ('active_mentors',)
     # prepopulated_fields = {'slug': ('name',)}
