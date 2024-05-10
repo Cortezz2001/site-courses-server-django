@@ -43,7 +43,6 @@ class CourseAdmin(admin.ModelAdmin):
     ]
     list_display = ('id', 'title', 'price', 'format', 'created_at')
     search_fields = ('title', 'desc')
-    prepopulated_fields = {'slug': ('title',)}
     filter_horizontal = ('active_mentors',)
 
 
