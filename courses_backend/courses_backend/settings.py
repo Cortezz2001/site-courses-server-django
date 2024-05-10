@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'courses.apps.CoursesConfig',
     'mentors.apps.MentorsConfig',
     'events.apps.EventsConfig',
+    'banners.apps.BannersConfig',
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
