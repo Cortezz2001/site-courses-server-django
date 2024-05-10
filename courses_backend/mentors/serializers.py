@@ -15,7 +15,7 @@ class CourseSerializer(serializers.ModelSerializer):
 
 
 class NestedMentorSerializer(serializers.ModelSerializer):
-  courses = CourseSerializer(source='course_set', many=True)
+  courses = CourseSerializer(source='learnedcourse_set', many=True, read_only=True)
 
   class Meta:
     model = Mentor

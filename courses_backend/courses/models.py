@@ -14,6 +14,7 @@ class Course(models.Model):
     format = models.CharField(max_length=255, verbose_name="Формат")
     result = models.TextField(verbose_name="Результаты курса")
     control = models.CharField(max_length=255, verbose_name="Форма контроля")
+    timeline = models.IntegerField(verbose_name="Длительность курса (Недели)")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания курса')
     class Meta:
         verbose_name = "Курс"  
