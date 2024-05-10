@@ -19,7 +19,8 @@ class Course(models.Model):
     class Meta:
         verbose_name = "Курс"  
         verbose_name_plural = "Курсы"    
-
+    def __str__(self):
+        return self.title
 
 class Skill(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
