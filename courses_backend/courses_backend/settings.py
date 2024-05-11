@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'mentors.apps.MentorsConfig',
     'events.apps.EventsConfig',
     'banners.apps.BannersConfig',
+    'form_messages.apps.FormMessagesConfig',
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
@@ -149,6 +150,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
     )
+
 }
 
 SIMPLE_JWT = {
