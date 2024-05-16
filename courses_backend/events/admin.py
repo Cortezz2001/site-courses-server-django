@@ -2,8 +2,8 @@ from django.contrib import admin
 from .models import (
     Event
 )
-
-class EventAdmin(admin.ModelAdmin):
+from modeltranslation.admin import TranslationAdmin
+class EventAdmin(TranslationAdmin):
     list_display = ('id', 'title', 'format', 'created_at')
     search_fields = ('title', 'format')
     filter_horizontal = ('active_mentors',)
