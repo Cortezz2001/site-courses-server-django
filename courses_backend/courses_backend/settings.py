@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 from datetime import timedelta
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -115,6 +117,29 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru'
 #en-us
+
+LANGUAGES = (
+    ('ru', 'Russian'),
+    ('en', 'English'),
+    ('kk', 'Kazakh'),
+)
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'ru'
+
+MODELTRANSLATION_LANGUAGES = ('ru', 'en', 'kk')
+
+MODELTRANSLATION_FALLBACK_LANGUAGES = {
+    'default': ('ru',),
+}
+
+MODELTRANSLATION_PREPOPULATE_LANGUAGE = 'ru'
+
+MODELTRANSLATION_TRANSLATION_FILES = (
+    'mentors.translation',  
+)
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
+]
 TIME_ZONE = 'Asia/Almaty'
 
 USE_I18N = True

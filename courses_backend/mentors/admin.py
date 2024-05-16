@@ -4,17 +4,18 @@ from .models import (
     Mentor,
 )
 from django.utils.html import format_html
-
+from modeltranslation.admin import TranslationAdmin, TranslationStackedInline
 class MentorInline(admin.TabularInline):
     model = Mentor
     extra = 1
 
 
-class CourseInline(admin.TabularInline):
+class CourseInline(TranslationStackedInline):
     model = LearnedCourse
     extra = 1
 
-class MentorAdmin(admin.ModelAdmin):
+
+class MentorAdmin(TranslationAdmin):
     inlines = [
         CourseInline,
     ]
