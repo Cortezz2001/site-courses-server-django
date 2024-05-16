@@ -7,33 +7,33 @@ from .models import (
     Knowhow,
     Challenge,
 )
-
-class SkillInline(admin.TabularInline):
+from modeltranslation.admin import TranslationAdmin, TranslationStackedInline
+class SkillInline(TranslationStackedInline):
     model = Skill
     extra = 1
 
 
-class ProgramInline(admin.TabularInline):
+class ProgramInline(TranslationStackedInline):
     model = Program
     extra = 1
 
 
-class FeaturesInline(admin.TabularInline):
+class FeaturesInline(TranslationStackedInline):
     model = Features
     extra = 1
 
 
-class KnowhowInline(admin.TabularInline):
+class KnowhowInline(TranslationStackedInline):
     model = Knowhow
     extra = 1
 
 
-class ChallengeInline(admin.TabularInline):
+class ChallengeInline(TranslationStackedInline):
     model = Challenge
     extra = 1
 
 
-class CourseAdmin(admin.ModelAdmin):
+class CourseAdmin(TranslationAdmin):
     inlines = [
         SkillInline,
         ProgramInline,
