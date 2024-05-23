@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-o#+h11!c3k0-1=b$i@yq5jl874%+5d&5@8+6v&()r457wn8#eo
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['lionitschool.pythonanywhere.com', 'lion-it-school.vercel.app',]
+ALLOWED_HOSTS = ['lionitschool.pythonanywhere.com', 'lion-it-school.vercel.app', '127.0.0.1', 'localhost',]
 
 
 # Application definition
