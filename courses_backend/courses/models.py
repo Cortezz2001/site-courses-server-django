@@ -5,7 +5,7 @@ from mentors.models import Mentor
 class Course(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255, verbose_name="Название курса")
-    bid = models.CharField(max_length=255, unique=True, verbose_name="Наименование программы, куда входит курс")
+    bid = models.CharField(max_length=255, blank=True, verbose_name="Наименование программы, куда входит курс")
     img = models.URLField(verbose_name="Изображение")
     desc = models.TextField(verbose_name="Описание курса")
     goal = models.TextField(verbose_name="Цель курса")
