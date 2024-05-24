@@ -42,12 +42,18 @@ INSTALLED_APPS = [
     'mentors.apps.MentorsConfig',
     'events.apps.EventsConfig',
     'banners.apps.BannersConfig',
+    'auth_system.apps.AuthSystemConfig',
     'form_messages.apps.FormMessagesConfig',
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
     'corsheaders',
 ]
+
+# ... other settings ...
+
+AUTH_USER_MODEL = 'auth_system.User'  # Set the custom user model path
+
 
 MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
