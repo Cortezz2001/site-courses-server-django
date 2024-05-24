@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-o#+h11!c3k0-1=b$i@yq5jl874%+5d&5@8+6v&()r457wn8#eo
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['lionitschool.pythonanywhere.com', 'lion-it-school.vercel.app', '127.0.0.1', 'localhost',]
 
 
 # Application definition
@@ -157,7 +157,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-
+MEDIA_URL = '/media/'
+STATIC_ROOT = '/home/lionitschool/static'
+MEDIA_ROOT = '/home/lionitschool/media'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -167,6 +169,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'https://localhost:3000',
+    'https://lion-it-school.vercel.app',
 ]
 
 CORS_ALLOW_HEADERS = [
@@ -175,7 +178,7 @@ CORS_ALLOW_HEADERS = [
     'Access-Control-Allow-Headers'
 ]
 
-CSRF_TRUSTED_ORIGINS = ['http://*.localhost:3000']
+CSRF_TRUSTED_ORIGINS = ['http://*.localhost:3000', 'https://lion-it-school.vercel.app',]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
